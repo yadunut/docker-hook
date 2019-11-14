@@ -24,11 +24,11 @@ CONTAINER_NAME = getenv('CONTAINER_NAME')
 if not CONTAINER_NAME:
     logging.error("CONTAINER_NAME must be set")
     exit(1)
-VIRTUAL_HOST = getenv('VIRTUAL_HOST')
+VIRTUAL_HOST = getenv('CONTAINER_VIRTUAL_HOST')
 if not VIRTUAL_HOST:
-    logging.error("VIRTUAL_HOST must be set")
+    logging.error("CONTAINER_VIRTUAL_HOST must be set")
     exit(1)
-LETSENCRYPT_HOST = getenv('LETSENCRYPT_HOST')
+LETSENCRYPT_HOST = getenv('CONTAINER_LETSENCRYPT_HOST')
 if not LETSENCRYPT_HOST:
     LETSENCRYPT_HOST = VIRTUAL_HOST
 NETWORK = getenv('NETWORK')
