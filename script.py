@@ -81,9 +81,10 @@ def create_new_container():
     logging.info("Successfully created container with name %s" %
                  container.name)
 
-def call_api(url, status, description = "Deployed"):
+
+def call_api(url, status, description="Deployed"):
     logging.info("Calling API")
-    r = requests.post(url=url, json = {
+    r = requests.post(url=url, json={
         'state': status,
         'description': description,
         'context': "Continuous deployment on Falcon",
@@ -94,7 +95,7 @@ def call_api(url, status, description = "Deployed"):
 application = Flask(__name__)
 
 
-@application.route('/<id>', methods=['POST'])
+@application.route('/<id>', methods=['GET', 'POST'])
 def index(id):
     global UUID
     logging.info("Got request at /")
@@ -116,9 +117,9 @@ def index(id):
         logging.error("Docker not found!")
         exit(1)
 
-
     call_api(callback_url, status='success')
     return "success"
+
 
 if __name__ == "__main__":
     logging.info("All systems operational, beginning application loop")
