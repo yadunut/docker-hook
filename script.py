@@ -122,5 +122,12 @@ def index(id):
 
 
 if __name__ == "__main__":
+    try:
+        remove_containers()
+        pull_image()
+        create_new_container()
+    except FileNotFoundError:
+        logging.error("Docker not found!")
+        exit(1)
     logging.info("All systems operational, beginning application loop")
     application.run(debug=DEBUG, host='0.0.0.0', port=PORT)
